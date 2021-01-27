@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas - Sprite & Movement</title>
+    <style>
+        body {
+
+            margin: 0;
+            overflow: hidden;
+            display: flex;
+            flex-flow: row wrap;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas class="myCanvas1">
+        <p>Sorry, your browser does not support canvas.</p>
+    </canvas>
+    <canvas class="myCanvas2">
+        <p>Sorry, your browser does not support canvas.</p>
+    </canvas>
+    <canvas class="myCanvas3">
+        <p>Sorry, your browser does not support canvas.</p>
+    </canvas>
+    <canvas class="myCanvas4">
+        <p>Sorry, your browser does not support canvas.</p>
+    </canvas>
+
+    <script>
+        // general settings 
+        const canvas1 = document.querySelector('.myCanvas1');
+        const canvas2 = document.querySelector('.myCanvas2');
+        const canvas3 = document.querySelector('.myCanvas3');
+        const canvas4 = document.querySelector('.myCanvas4');
+        let width = canvas1.width = canvas2.width = canvas3.width = canvas4.width = (window.innerWidth / 2);
+        let height = canvas1.height = canvas2.height = canvas3.height = canvas4.height = (window.innerHeight / 2);
+        const ctx1 = canvas1.getContext('2d');
+        const ctx2 = canvas2.getContext('2d');
+        const ctx3 = canvas3.getContext('2d');
+        const ctx4 = canvas4.getContext('2d');
+        // general seetings finish
+
+
+
+        // ctx1 started
+        function ctx1Drawing() {
+            ctx1.fillStyle = 'rgb(0,0,0)';
+            ctx1.fillRect(0, 0, width, height);
+
+            ctx1.strokeStyle = 'white';
+            ctx1.lineWidth = 2;
+            ctx1.font = '48px arial';
+            ctx1.strokeText('1', 10, 50);
+
+            ctx1.translate(width / 2, height / 2);
+
+            let image = new Image();
+            image.src = 'walk-right.png';
+            image.onload = draw;
+
+            let sprite = 0;
+            let posX = 0;
+
+            function draw() {
+                ctx1.fillRect(-(width / 2), -(height / 2), width, height);
+                ctx1.strokeStyle = 'white';
+                ctx1.lineWidth = 2;
+                ctx1.font = '48px arial';
+                ctx1.strokeText('1', 10 - (width / 2), 50 - (height / 2));
+                ctx1.drawImage(image, (sprite * 102), 0, 102, 148, (0 + posX), -74, 102, 148);
+
+                if (posX % 13 === 0) {
+                    if (sprite === 5) {
+                        sprite = 0;
+                    } else {
+                        sprite++;
+                    }
+                };
+
+                if (posX > width / 2) {
+                    let newStartPos = -((width / 2) + 102);
+                    posX = Math.ceil(newStartPos);
+                    console.log(posX);
+                } else {
+                    posX += 2;
+                }
+
+                window.requestAnimationFrame(draw);
+            }
+
+            draw();
+
+        };
+
+        // ctx1 finished
+
+        // ctx2 started
+        function ctx2Drawing() {
+            ctx2.fillStyle = 'rgb(80,80,80)';
+            ctx2.fillRect(0, 0, width, height);
+            ctx2.strokeStyle = 'white';
+            ctx2.lineWidth = 2;
+            ctx2.font = '48px arial';
+            ctx2.strokeText('2', 10, 50);
+            ctx2.translate(width / 2, height / 2);
+
+            let image2 = new Image();
+            image2.src = 'walk-right.png';
+            image2.onload = draw2;
+
+            let sprite2 = 0;
+            let posX2 = 0;
+
+            function draw2() {
+                ctx2.fillRect(-(width / 2), -(height / 2), width, height);
+                ctx2.strokeStyle = 'white';
+                ctx2.lineWidth = 2;
+                ctx2.font = '48px arial';
+                ctx2.strokeText('2', 10 - (width / 2), 50 - (height / 2));
+                ctx2.drawImage(image2, (sprite2 * 102), 0, 102, 148, (0 + posX2), -74, 102, 148);
+
+                if (posX2 % 13 === 0) {
+                    if (sprite2 === 5) {
+                        sprite2 = 0;
+                    } else {
+                        sprite2++;
+                    }
+                };
+
+                if (posX2 > width / 2) {
+                    let newStartPos = -((width / 2) + 102);
+                    posX2 = Math.ceil(newStartPos);
+                    console.log(posX2);
+                } else {
+                    posX2 += 1;
+                }
+
+                window.requestAnimationFrame(draw2);
+            }
+
+            draw2();
+        };
+        // ctx2 finished
+
+        // ctx3 started
+        function ctx3Drawing() {
+            ctx3.fillStyle = 'rgb(80,80,80)';
+            ctx3.fillRect(0, 0, width, height);
+            ctx3.strokeStyle = 'white';
+            ctx3.lineWidth = 2;
+            ctx3.font = '48px arial';
+            ctx3.strokeText('3', 10, 50);
+            ctx3.translate(width / 2, height / 2);
+
+            let image3 = new Image();
+            image3.src = 'walk-right.png';
+            image3.onload = draw3;
+
+            let sprite3 = 0;
+            let posX3 = 0;
+
+            function draw3() {
+                ctx3.fillRect(-(width / 2), -(height / 2), width, height);
+                ctx3.strokeStyle = 'white';
+                ctx3.lineWidth = 2;
+                ctx3.font = '48px arial';
+                ctx3.strokeText('3', 10 - (width / 2), 50 - (height / 2));
+                ctx3.drawImage(image3, (sprite3 * 102), 0, 102, 148, (0 + posX3), -74, 102, 148);
+
+                if (posX3 % 6 === 0) {
+                    if (sprite3 === 5) {
+                        sprite3 = 0;
+                    } else {
+                        sprite3++;
+                    }
+                };
+
+                if (posX3 > width / 2) {
+                    let newStartPos = -((width / 2) + 102);
+                    posX3 = Math.ceil(newStartPos);
+                    console.log(posX3);
+                } else {
+                    posX3 += 2;
+                }
+
+                window.requestAnimationFrame(draw3);
+            }
+
+            draw3();
+
+        }
+
+        // ctx3 finished
+
+        // ctx4 started
+
+        function ctx4Drawing() {
+            ctx4.fillStyle = 'rgb(0,0,0)';
+            ctx4.fillRect(0, 0, width, height);
+            ctx4.strokeStyle = 'white';
+            ctx4.lineWidth = 2;
+            ctx4.font = '48px arial';
+            ctx4.strokeText('4', 10, 50);
+            ctx4.translate(width / 2, height / 2);
+
+            let image4 = new Image();
+            image4.src = 'walk-right.png';
+            image4.onload = draw4;
+
+            let sprite4 = 0;
+            let posX4 = 0;
+
+            function draw4() {
+                ctx4.fillRect(-(width / 2), -(height / 2), width, height);
+                ctx4.strokeStyle = 'white';
+                ctx4.lineWidth = 2;
+                ctx4.font = '48px arial';
+                ctx4.strokeText('4', 10 - (width / 2), 50 - (height / 2));
+                ctx4.drawImage(image4, (sprite4 * 102), 0, 102, 148, (0 + posX4), -74, 102, 148);
+
+                if (posX4 % 26 === 0) {
+                    if (sprite4 === 5) {
+                        sprite4 = 0;
+                    } else {
+                        sprite4++;
+                    }
+                };
+
+                if (posX4 > width / 2) {
+                    let newStartPos = -((width / 2) + 102);
+                    posX4 = Math.ceil(newStartPos);
+                    console.log(posX4);
+                } else {
+                    posX4 += 1;
+                }
+
+                window.requestAnimationFrame(draw4);
+            }
+
+            draw4();
+        }
+
+        // ctx4 finished
+
+        function initialize() {
+            window.addEventListener('resize', resizeCanvas);
+            ctx1Drawing();
+            ctx2Drawing();
+            ctx3Drawing();
+            ctx4Drawing();
+        }
+
+        function resizeCanvas() {
+            width = canvas1.width = canvas2.width = canvas3.width = canvas4.width = (window.innerWidth / 2);
+            height = canvas1.height = canvas2.height = canvas3.height = canvas4.height = (window.innerHeight / 2);
+            ctx1Drawing();
+            ctx2Drawing();
+            ctx3Drawing();
+            ctx4Drawing();
+        }
+
+        initialize();
+    </script>
+</body>
+
+</html>
